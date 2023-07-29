@@ -1,0 +1,16 @@
+.ant-badge{
+    &-count {
+        border-radius: 16px;
+      }
+    
+      &-count {
+        height: 18px !important;
+        min-width: 16px !important;
+        line-height: 16px !important;
+        font-size: 12px !important;
+        padding: 0 6px;
+        .ant-scroll-number-only > p.ant-scroll-number-only-unit {
+            font-size: 12px;
+          }
+      }
+}
