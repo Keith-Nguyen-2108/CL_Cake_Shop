@@ -1,16 +1,18 @@
 @import 'variables';
-.ant-btn{
-    font-weight: 500;
+
+.ant-btn {
+  font-weight: 500;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+}
 
-    &-default{
-        &:not(:disabled):hover{
-            background:$primary-color ;
-             border: 1px solid $primary-color;
-    color: white
-        }
-    }
+.btn-danger {
+  color: red;
+  font-size: 16px;
+}
 
+.btn-edit{
+  color:rgb(70, 236, 156);
+  font-size: 16px;
 }

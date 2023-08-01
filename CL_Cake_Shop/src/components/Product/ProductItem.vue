@@ -1,5 +1,10 @@
 <template>
-  <div class="product-item cursor-pointer d-flex justify-content-center">
+  <div
+    :class="[
+      'product-item cursor-pointer d-flex justify-content-center',
+      !product.stock_count ? 'out-of-stock' : ''
+    ]"
+  >
     <a-card hoverable>
       <template #cover>
         <img alt="example" :src="getImgUrl(product.image_url)" />
@@ -22,7 +27,13 @@
         </template>
         <template #description>
           <div class="product-item__description">{{ product.description }}</div>
-          <a-button class="mt-2 primary--text">Add to Cart</a-button>
+          <a-button
+            type="primary"
+            class="mt-2"
+            :disabled="!product.stock_count"
+            @click="() => addProductToCart(product.id)"
+            >Add to Cart</a-button
+          >
         </template>
       </a-card-meta>
     </a-card>
@@ -34,6 +45,7 @@ import { defineComponent } from 'vue'
 import type { PropType } from 'vue'
 
 import { ProductItem } from '@/types'
+import { useStore } from '@/hooks'
 
 export default defineComponent({
   name: 'ProductItem',
@@ -46,10 +58,13 @@ export default defineComponent({
   },
 
   setup() {
+    const { addProductToCart } = useStore()
+
     const getImgUrl = (url) => new URL(`/src/assets/${url}`, import.meta.url).href
 
     return {
-      getImgUrl
+      getImgUrl,
+      addProductToCart
     }
   }
 })
@@ -57,6 +72,34 @@ export default defineComponent({
 
 <style scoped lang="scss">
 .product-item {
+  &.out-of-stock {
+    position: relative;
+    z-index: 1;
+
+    &::before {
+      content: 'Out of Stock';
+      top: 8%;
+      background: #be9c79;
+      color: white;
+      position: absolute;
+      border-radius: 0.1em;
+      left: 48%;
+      transform: rotate(-30deg) translate(-50%, -48%);
+      font-size: 40px;
+      width: 90%;
+      text-align: center;
+      z-index: 2;
+    }
+
+    .ant-card {
+      &-cover {
+        img {
+          filter: grayscale(1);
+        }
+      }
+    }
+  }
+
   .ant-card {
     width: 300px;
     height: 380px;

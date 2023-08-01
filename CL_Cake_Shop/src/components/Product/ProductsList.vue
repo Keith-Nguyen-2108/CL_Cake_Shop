@@ -1,13 +1,13 @@
 <template>
   <div class="products-list py-5">
-    <h1 class="text-center products-list__title mb-4">Products List</h1>
+    <h1 class="text-center page-title mb-4">Products List</h1>
     <div class="products-list__container pt-3">
       <a-row class="align-product">
         <a-col
           :sm="24"
           :md="12"
           :lg="8"
-          v-for="product in productsList"
+          v-for="product in listProducts"
           :key="product.id"
           class="mb-4"
         >
@@ -20,7 +20,8 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import productsList from './products.js'
+import { useStore } from '@/hooks'
+
 import ProductItem from './ProductItem.vue'
 
 export default defineComponent({
@@ -31,8 +32,10 @@ export default defineComponent({
   },
 
   setup() {
+    const { listProducts } = useStore()
+
     return {
-      productsList
+      listProducts
     }
   }
 })
@@ -40,10 +43,6 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .products-list {
-  &__title {
-    font-size: 38px;
-    font-weight: 400;
-  }
   &__container {
     width: 90%;
     margin: 0 auto;

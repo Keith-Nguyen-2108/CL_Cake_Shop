@@ -29,3 +29,15 @@ body {
 .primary--text{
   color: $primary-color
 }
+
+.page-title{
+  font-size: 38px;
+    font-weight: 400;
+    @media screen and (max-width: 525px) {
+      font-size: 32px;
+    }
+}
+
+.text-danger{
+  color: red;
+}

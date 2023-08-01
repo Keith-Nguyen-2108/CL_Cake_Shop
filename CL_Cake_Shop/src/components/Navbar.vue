@@ -2,18 +2,18 @@
   <div class="header w-100">
     <div class="container">
       <div class="d-flex justify-content-between align-items-center">
-        <div class="logo d-flex align-items-center cursor-pointer">
+        <div class="logo d-flex align-items-center cursor-pointer" @click="$router.push('/')">
           <div class="logo__avatar">
             <img class="logo__avatar-img" src="@/assets/logo.png" alt />
           </div>
-          <div class="logo__name-branch" @click="$router.push('/')">
+          <div class="logo__name-branch">
             <h3 class="b2 text-logo mb-0">CL</h3>
             <p class="b6 mb-0">Cake Shop</p>
           </div>
         </div>
         <div class="d-flex">
           <search-outlined class="b5 cursor-pointer" />
-          <badge count="5">
+          <badge :count="cartItems.length" @click="$router.push('/cart')">
             <shopping-cart-outlined class="b5 cursor-pointer ms-4" />
           </badge>
         </div>
@@ -27,6 +27,8 @@ import { defineComponent } from 'vue'
 import { Badge } from 'ant-design-vue'
 import { SearchOutlined, ShoppingCartOutlined } from '@ant-design/icons-vue'
 
+import { useStore } from '@/hooks'
+
 export default defineComponent({
   name: 'Navbar',
 
@@ -37,7 +39,9 @@ export default defineComponent({
   },
 
   setup() {
-    return {}
+    const { cartItems } = useStore()
+
+    return { cartItems }
   }
 })
 </script>

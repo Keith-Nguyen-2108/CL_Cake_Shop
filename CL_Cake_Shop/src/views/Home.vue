@@ -1,6 +1,5 @@
 <template>
   <main>
-    <navbar />
     <div class="banner">
       <img class="banner-img" src="@/assets/banner.png" alt />
     </div>
@@ -9,14 +8,13 @@
 </template>
 
 <script lang="ts">
-import { Navbar, ProductsList } from '@/components'
+import { ProductsList } from '@/components'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'Home',
 
   components: {
-    Navbar,
     ProductsList
   }
 })
